@@ -1,30 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/windows,linux,macos,haskell
-# Edit at https://www.toptal.com/developers/gitignore?templates=windows,linux,macos,haskell
-
-### Haskell ###
-dist
-dist-*
-cabal-dev
-*.o
-*.hi
-*.hie
-*.chi
-*.chs.h
-*.dyn_o
-*.dyn_hi
-.hpc
-.hsenv
-.cabal-sandbox/
-cabal.sandbox.config
-*.prof
-*.aux
-*.hp
-*.eventlog
-.stack-work/
-cabal.project.local
-cabal.project.local~
-.HTF/
-.ghc.environment.*
+# Created by https://www.toptal.com/developers/gitignore/api/linux,macos,windows,lua
+# Edit at https://www.toptal.com/developers/gitignore?templates=linux,macos,windows,lua
 
 ### Linux ###
 *~
@@ -40,6 +15,49 @@ cabal.project.local~
 
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
+
+### Lua ###
+# Compiled Lua sources
+luac.out
+
+# luarocks build files
+*.src.rock
+*.zip
+*.tar.gz
+
+# Object files
+*.o
+*.os
+*.ko
+*.obj
+*.elf
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+*.def
+*.exp
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
 
 ### macOS ###
 # General
@@ -100,5 +118,5 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/windows,linux,macos,haskell
+# End of https://www.toptal.com/developers/gitignore/api/linux,macos,windows,lua
 
