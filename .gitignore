@@ -120,3 +120,7 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/linux,macos,windows,lua
 
+/.luarocks
+/lua_modules
+/lua
+/luarocks
