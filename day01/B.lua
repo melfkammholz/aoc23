@@ -32,7 +32,7 @@ for line in io.lines() do
   -- collect all positions of a number
   for val, num in pairs(nums) do
     for i = 1, #line do
-      if line:sub(i, math.min(i + #num - 1, #line)) == num then
+      if line:sub(i, i + #num - 1) == num then
         table.insert(set, {i, val})
       end
     end
