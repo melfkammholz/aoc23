@@ -5,7 +5,7 @@
 ## Challenges
 
 
-- use a third-party libraries
+- use third-party libraries
 - use coroutines in a non-trivial way
 - write Lua idiomatic code
 - parallelize a solution ([lanes](https://lualanes.github.io/lanes/))
