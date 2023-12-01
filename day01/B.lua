@@ -8,7 +8,7 @@ local function tuplecmp(l1, l2)
       return false
     end
   end
-  return false
+  return #l1 < #l2
 end
 
 
