@@ -1,7 +1,7 @@
 local res = 0
 
 for line in io.lines() do
-  -- check maximum draw of each color and set
+  -- check maximum draw of each color in a set
   local cnt = {red = 0, green = 0, blue = 0}
   local _, ss = line:match('Game (%d+): (.+)')
   for s in ss:gmatch('([^;]+)') do

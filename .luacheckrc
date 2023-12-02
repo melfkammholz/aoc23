@@ -9,3 +9,6 @@ cache = true
 -- only check solutions and meta specifications
 include_files = {"day*/*.lua", "*.luacheckrc"}
 
+max_code_line_length = 80
+-- max_cyclomatic_complexity = 10
+
