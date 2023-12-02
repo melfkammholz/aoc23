@@ -1,5 +1,6 @@
 -- TODO write Tuple class
 local function tuplecmp(l1, l2)
+  assert(#l1 == #l2)
   local n = math.min(#l1, #l2)
   for i = 1, n do
     if l1[i] < l2[i] then
@@ -8,7 +9,7 @@ local function tuplecmp(l1, l2)
       return false
     end
   end
-  return #l1 < #l2
+  return false
 end
 
 
