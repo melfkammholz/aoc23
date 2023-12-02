@@ -15,7 +15,6 @@ for line in io.lines() do
   -- check bounds
   local ok = true
   for c, m in pairs(lim) do
-    print(c, cnt[c], m)
     ok = ok and cnt[c] <= m
   end
   if ok then res = res + id end
