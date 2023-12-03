@@ -21,7 +21,9 @@ for r in io.lines() do
   table.insert(g, r)
 end
 
-local dirs = {{-1, 0}, {-1, 1}, {0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}, {-1, -1}}
+local dirs = {
+  {-1, 0}, {-1, 1}, {0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}, {-1, -1}
+}
 
 -- check if a symbol adjacent to the given position
 local function ch(y, x)
