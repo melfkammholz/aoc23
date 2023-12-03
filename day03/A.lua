@@ -25,7 +25,7 @@ local dirs = {
   {-1, 0}, {-1, 1}, {0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}, {-1, -1}
 }
 
--- check if a symbol adjacent to the given position
+-- check if a symbol is adjacent to the given position
 local function ch(y, x)
   for _, dir in pairs(dirs) do
     local dy, dx = table.unpack(dir)
