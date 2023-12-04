@@ -1,7 +1,7 @@
 local defaulttable = {}
 function defaulttable:new (f, t)
   t = t or {}
-  setmetatable(t, {__index = function() return f() end})
+  setmetatable(t, {__index = f})
   return t
 end
 
