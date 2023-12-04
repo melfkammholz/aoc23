@@ -1,7 +1,15 @@
-local m = {[0] = 0}  -- helps with prefix sums
-setmetatable(m, {__index = function() return 1 end})  -- table with default value
+local defaulttable = {}
+function defaulttable:new (f, t)
+  t = t or {}
+  setmetatable(t, {__index = function() return f() end})
+  return t
+end
+
+local m = defaulttable:new(function () return 1 end, {[0] = 0})
+local d = defaulttable:new(function () return 0 end)
 
 local k = 0
+local e = 0
 for line in io.lines() do
   local win, got
   k, win, got = line:match("Card[ ]+(%d+): ([^|]+) | (.*)")
@@ -15,10 +23,16 @@ for line in io.lines() do
   for c in got:gmatch('%d+') do
     p = p + (wcs[tonumber(c)] and 1 or 0)
   end
-  for j = 1, p do
-    m[k + j] = m[k + j] + m[k]
+
+  -- accumulate extra cards in e, discard previously accounted for extra cards
+  -- when (k + p)-th card has been reached
+  e = e + d[k]
+  if p > 0 then
+    d[k + p] = d[k + p] - m[k]
+    e = e + m[k]
   end
-  m[k] = m[k] + m[k - 1]
+  m[k] = m[k] + m[k - 1]  -- prefix sum
+  m[k + 1] = m[k + 1] + e
 end
 
 print(m[k])  -- 9496801
