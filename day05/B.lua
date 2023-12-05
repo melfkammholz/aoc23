@@ -11,10 +11,20 @@ local function cmp(l1, l2)
   return false
 end
 
+local function trynum(...)
+  local function go(a, i)
+    if i > #a then
+      return nil
+    else
+      return tonumber(a[i]), go(a, i + 1)
+    end
+  end
+  return go({...}, 1)
+end
+
 local as = {}
 for a, b in io.read("l"):gmatch("(%d+) (%d+)") do
-  a = tonumber(a)
-  b = tonumber(b)
+  a, b = trynum(a, b)
   table.insert(as, {a, a + b - 1})
 end
 
@@ -29,8 +39,7 @@ while true do
   while true do
     local line = io.read("l")
     if not line or line == "" then break end
-    local ds, ss, r = line:match("(%d+) (%d+) (%d+)")
-    ds, ss, r = tonumber(ds), tonumber(ss), tonumber(r)
+    local ds, ss, r = trynum(line:match("(%d+) (%d+) (%d+)"))
     table.insert(rs, {ss, r, ds})
   end
   table.sort(rs, cmp)
