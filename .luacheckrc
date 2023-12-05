@@ -7,8 +7,16 @@ std = "lua54"  -- previously was "min"
 cache = true
 
 -- only check solutions and meta specifications
-include_files = {"day*/*.lua", "*.luacheckrc"}
+include_files = {
+  "day*/*.lua",
+  "util.lua",
+  "spec/*.lua",
+  "*.luacheckrc"
+}
 
 max_code_line_length = 80
 -- max_cyclomatic_complexity = 10
 
+files["spec/**/*.lua"] = {
+  std = "+busted"
+}
