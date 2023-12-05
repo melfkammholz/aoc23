@@ -12,6 +12,7 @@
 - use [FFI](https://luajit.org/ext_ffi.html) in LuaJIT; use Lua's C API
 - try dialects
   - [Teal](https://github.com/teal-language/tl)
+  - [moonscript](https://moonscript.org/)
   - [shine](https://github.com/richardhundt/shine)
 - write in a functional programming style (maybe use [luafun](https://github.com/luafun/luafun))
 - write in an object-oriented programming style ([OOP](https://www.lua.org/pil/16.html))
