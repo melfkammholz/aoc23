@@ -11,9 +11,7 @@ local res = 1
 for i = 1, #t do
   local c = 0
   for j = 1, t[i] do
-    if d[i] < (t[i] - j) * j then
-      c = c + 1
-    end
+    c = c + (d[i] < (t[i] - j) * j and 1 or 0)
   end
   res = res * c
 end
