@@ -1,6 +1,7 @@
-local t = io.read():gsub("[^%d]", "")
-local d = io.read():gsub("[^%d]", "")
-t, d = tonumber(t), tonumber(d)
+local function fst(a) return a end
+
+local t = tonumber(fst(io.read():gsub("[^%d]", "")))
+local d = tonumber(fst(io.read():gsub("[^%d]", "")))
 
 local res = 0
 for j = 1, t do
