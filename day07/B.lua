@@ -49,16 +49,16 @@ local function full(s)
 end
 
 local function pair2(s)
-  local c = 0
-  for cr, a in pairs(s) do
-    if cr ~= "J" then
-      if a == 2 then c = c + 1 end
+  local cnt = 0
+  for c, a in pairs(s) do
+    if c ~= "J" then
+      if a == 2 then cnt = cnt + 1 end
     end
   end
 
-  if c == 0 and (s.J >= 2) then return true end
-  if c == 1 and (s.J >= 1) then return true end
-  return c == 2 or s.J >= 3
+  if cnt == 0 and (s.J >= 2) then return true end
+  if cnt == 1 and (s.J >= 1) then return true end
+  return cnt == 2 or s.J >= 3
 end
 
 local function high() return true end
