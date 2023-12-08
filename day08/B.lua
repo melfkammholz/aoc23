@@ -22,7 +22,7 @@ io.read()
 local currs = {}
 local adj = {}
 for line in io.lines() do
-  local a, l, r = line:match("(%w+) = .(%w+), (%w+).")
+  local a, l, r = line:match("(%w+) = %((%w+), (%w+)%)")
   if a:sub(3, 3) == "A" then table.insert(currs, a) end
   adj[a] = {l, r}
 end

@@ -3,7 +3,7 @@ io.read()
 
 local adj = {}
 for line in io.lines() do
-  local a, l, r = line:match("(%a+) = .(%a+), (%a+).")
+  local a, l, r = line:match("(%a+) = %((%a+), (%a+)%)")
   adj[a] = {l, r}
 end
 
