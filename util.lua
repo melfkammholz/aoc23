@@ -13,10 +13,6 @@ function stringmt:__index(k)
   return #c > 0 and c or nil
 end
 
-function stringmt:__len()
-  return string.len(self)
-end
-
 function M.tablecmp(l1, l2)
   local n = math.min(#l1, #l2)
   for i = 1, n do
