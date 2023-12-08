@@ -1,11 +1,5 @@
-local function gcd(a, b)
-  if b == 0 then return a end
-  return gcd(b, a % b)
-end
-
-local function lcm(a, b)
-  return a * b // gcd(a, b)
-end
+local util = require("util")
+local lcm = util.lcm
 
 local function lcml(a, n)
   local r = 1
@@ -23,7 +17,7 @@ local currs = {}
 local adj = {}
 for line in io.lines() do
   local a, l, r = line:match("(%w+) = %((%w+), (%w+)%)")
-  if a:sub(3, 3) == "A" then table.insert(currs, a) end
+  if a[3] == "A" then table.insert(currs, a) end
   adj[a] = {l, r}
 end
 
@@ -37,11 +31,11 @@ while not res do
 
   -- step
   for j = 1, #currs do
-    local k = (i - 1) % string.len(dirs) + 1
-    currs[j] = adj[currs[j]][lr[dirs:sub(k, k)] + 1]
+    local k = (i - 1) % #dirs + 1
+    currs[j] = adj[currs[j]][lr[dirs[k]] + 1]
 
     -- assumption over the input
-    if currs[j]:sub(3, 3) == "Z" then
+    if currs[j][3] == "Z" then
       last[j] = i
     end
   end
