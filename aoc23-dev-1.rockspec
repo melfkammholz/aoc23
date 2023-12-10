@@ -30,12 +30,17 @@ build = {
     ["day07.B"] = "day07/B.lua",
     ["day08.A"] = "day08/A.lua",
     ["day08.B"] = "day08/B.lua",
+    ["day09.A"] = "day09/A.lua",
+    ["day09.B"] = "day09/B.lua",
+    ["day10.A"] = "day10/A.lua",
+    ["day10.B"] = "day10/B.lua",
     ["util"] = "util.lua"
   }
 }
 
 dependencies = {
   "lua >= 5.4",
+  "fun",
   "inspect"
 }
 

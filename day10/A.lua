@@ -1,3 +1,5 @@
+local fun = require("fun")
+
 local util = require("util")
 local tocharlist = util.tocharlist
 local tget = util.tget
@@ -6,8 +8,9 @@ local tset = util.tset
 -- read input
 local g = {}
 for r in io.lines() do
-  g[#g + 1] = tocharlist(r)
+  table.insert(g, r)
 end
+g = fun.map(tocharlist, g):totable()
 
 -- build adjacency lists
 local adj = {}
@@ -87,12 +90,11 @@ while i <= j do
   i = i + 1
 end
 
-local res = 0
-for y = 1, #g do
-  for x = 1, #g[y] do
-    res = math.max(res, tget(d, {y, x}, 0))
-  end
-end
+local res = fun.range(#g):foldl(function(r1, y)
+  return math.max(r1, fun.range(#g[y]):foldl(function(r2, x)
+    return math.max(r2, tget(d, {y, x}, 0))
+  end, 0))
+end, 0)
 
 print(res)  -- 6947
 
