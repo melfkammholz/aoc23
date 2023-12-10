@@ -45,28 +45,60 @@ for y = 1, #g do
     if g[y][x] == "S" then
       -- replace S with appropriate pipe
       local p = {}
-      if inb(y + 1, x) and g[y + 1][x]:match(v[1]) then table.insert(p, "b") end
-      if inb(y - 1, x) and g[y - 1][x]:match(v[-1]) then table.insert(p, "t") end
-      if inb(y, x + 1) and g[y][x + 1]:match(h[1]) then table.insert(p, "r") end
-      if inb(y, x - 1) and g[y][x - 1]:match(h[-1]) then table.insert(p, "l") end
+      if inb(y + 1, x) and g[y + 1][x]:match(v[1]) then
+        table.insert(p, "b")
+      end
+      if inb(y - 1, x) and g[y - 1][x]:match(v[-1]) then
+        table.insert(p, "t")
+      end
+      if inb(y, x + 1) and g[y][x + 1]:match(h[1]) then
+        table.insert(p, "r")
+      end
+      if inb(y, x - 1) and g[y][x - 1]:match(h[-1]) then
+        table.insert(p, "l")
+      end
       g[y][x] = s[p[1] .. p[2]]
       sy, sx = y, x
     end
 
     -- hard coded because why not
     -- TODO refactor maybe never
-    if g[y][x] == "|" and inb(y - 1, x) and g[y - 1][x]:match(v[-1]) then ins(y, x, y - 1, x) end
-    if g[y][x] == "|" and inb(y + 1, x) and g[y + 1][x]:match(v[1]) then ins(y, x, y + 1, x) end
-    if g[y][x] == "F" and inb(y + 1, x) and g[y + 1][x]:match(v[1]) then ins(y, x, y + 1, x) end
-    if g[y][x] == "F" and inb(y, x + 1) and g[y][x + 1]:match(h[1]) then ins(y, x, y, x + 1) end
-    if g[y][x] == "J" and inb(y - 1, x) and g[y - 1][x]:match(v[-1]) then ins(y, x, y - 1, x) end
-    if g[y][x] == "J" and inb(y, x - 1) and g[y][x - 1]:match(h[-1]) then ins(y, x, y, x - 1) end
-    if g[y][x] == "L" and inb(y - 1, x) and g[y - 1][x]:match(v[-1]) then ins(y, x, y - 1, x) end
-    if g[y][x] == "L" and inb(y, x + 1) and g[y][x + 1]:match(h[1]) then ins(y, x, y, x + 1) end
-    if g[y][x] == "-" and inb(y, x - 1) and g[y][x - 1]:match(h[-1]) then ins(y, x, y, x - 1) end
-    if g[y][x] == "-" and inb(y, x + 1) and g[y][x + 1]:match(h[1]) then ins(y, x, y, x + 1) end
-    if g[y][x] == "7" and inb(y + 1, x) and g[y + 1][x]:match(v[1]) then ins(y, x, y + 1, x) end
-    if g[y][x] == "7" and inb(y, x - 1) and g[y][x - 1]:match(h[-1]) then ins(y, x, y, x - 1) end
+    if g[y][x] == "|" and inb(y - 1, x) and g[y - 1][x]:match(v[-1]) then
+      ins(y, x, y - 1, x)
+    end
+    if g[y][x] == "|" and inb(y + 1, x) and g[y + 1][x]:match(v[1]) then
+      ins(y, x, y + 1, x)
+    end
+    if g[y][x] == "F" and inb(y + 1, x) and g[y + 1][x]:match(v[1]) then
+      ins(y, x, y + 1, x)
+    end
+    if g[y][x] == "F" and inb(y, x + 1) and g[y][x + 1]:match(h[1]) then
+      ins(y, x, y, x + 1)
+    end
+    if g[y][x] == "J" and inb(y - 1, x) and g[y - 1][x]:match(v[-1]) then
+      ins(y, x, y - 1, x)
+    end
+    if g[y][x] == "J" and inb(y, x - 1) and g[y][x - 1]:match(h[-1]) then
+      ins(y, x, y, x - 1)
+    end
+    if g[y][x] == "L" and inb(y - 1, x) and g[y - 1][x]:match(v[-1]) then
+      ins(y, x, y - 1, x)
+    end
+    if g[y][x] == "L" and inb(y, x + 1) and g[y][x + 1]:match(h[1]) then
+      ins(y, x, y, x + 1)
+    end
+    if g[y][x] == "-" and inb(y, x - 1) and g[y][x - 1]:match(h[-1]) then
+      ins(y, x, y, x - 1)
+    end
+    if g[y][x] == "-" and inb(y, x + 1) and g[y][x + 1]:match(h[1]) then
+      ins(y, x, y, x + 1)
+    end
+    if g[y][x] == "7" and inb(y + 1, x) and g[y + 1][x]:match(v[1]) then
+      ins(y, x, y + 1, x)
+    end
+    if g[y][x] == "7" and inb(y, x - 1) and g[y][x - 1]:match(h[-1]) then
+      ins(y, x, y, x - 1)
+    end
   end
 end
 
