@@ -13,6 +13,36 @@ function stringmt:__index(k)
   return #c > 0 and c or nil
 end
 
+function M.tocharlist(s)
+  local l = {}
+  for i = 1, #s do
+    l[i] = s[i]
+  end
+  return l
+end
+
+-- Table functions
+
+function M.tget(t, k, de)
+  for i = 1, #k do
+    if t[k[i]] then
+      t = t[k[i]]
+    else
+      return de
+    end
+  end
+  return t
+end
+
+function M.tset(t, k, v)
+  for i = 1, #k - 1 do
+    if not t[k[i]] then t[k[i]] = {} end
+    t = t[k[i]]
+  end
+
+  t[k[#k]] = v
+end
+
 function M.tablecmp(l1, l2)
   local n = math.min(#l1, #l2)
   for i = 1, n do
