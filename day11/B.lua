@@ -1,11 +1,10 @@
 local fun = require("fun")
 local util = require("util")
 
--- read input
-local g = {}
-for r in io.lines() do
-  g[#g + 1] = util.tocharlist(r)
-end
+local g = fun.tabulate(function() return io.read("l") end)
+  :take_while(fun.operator.truth)
+  :map(util.tocharlist)
+  :totable()
 
 -- compute indices of empty rows
 local rows = fun.range(#g)
