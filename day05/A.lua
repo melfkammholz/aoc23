@@ -63,7 +63,7 @@ while true do
         a = a + (e - s + 1)
       end
 
-      -- fully proccessed the original interval [a, b]
+      -- fully processed the original interval [a, b]
       if a > b then break end
     end
 
