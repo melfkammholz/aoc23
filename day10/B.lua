@@ -154,20 +154,13 @@ for y = 1, #g do
       local cnt = 0
       local u, w = y, x
       while u >= 1 and w >= 1 do
-        while u >= 1 and w >= 1 and g[u][w] == "." do
-          u = u - 1
-          w = w - 1
+        if g[u][w]:match("[7L]") then
+          cnt = cnt + 2
+        elseif g[u][w] ~= "." then
+          cnt = cnt + 1
         end
-
-        while u >= 1 and w >= 1 do
-          if g[u][w]:match("[7L]") then
-            cnt = cnt + 2
-          elseif g[u][w] ~= "." then
-            cnt = cnt + 1
-          end
-          u = u - 1
-          w = w - 1
-        end
+        u = u - 1
+        w = w - 1
       end
       res = res + (cnt % 2)
     end
