@@ -41,6 +41,7 @@ build = {
 dependencies = {
   "lua >= 5.4",
   "fun",
+  "lanes",
   "inspect"
 }
 
