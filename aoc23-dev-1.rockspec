@@ -34,6 +34,10 @@ build = {
     ["day09.B"] = "day09/B.lua",
     ["day10.A"] = "day10/A.lua",
     ["day10.B"] = "day10/B.lua",
+    ["day11.A"] = "day11/A.lua",
+    ["day11.B"] = "day11/B.lua",
+    ["day12.A"] = "day12/A.lua",
+    ["day12.B"] = "day12/B.lua",
     ["util"] = "util.lua"
   }
 }
