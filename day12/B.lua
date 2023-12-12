@@ -1,4 +1,3 @@
-local lanes = require("lanes").configure()
 require("util")
 
 -- read input
@@ -27,58 +26,48 @@ end
 -- all positions where n springs could be placed starting at i
 local function places(f, i, n)
   local p = {}
-  for j = i, #f - n + 1 do
-    -- cannot skip spring
-    if j > 1 and f[j - 1] == "#" then break end
-
-    -- check if position is feasible
-    local c = 0
-    while c < n and f[j + c] ~= "." do c = c + 1 end
-
-    -- group cannot be succeeded by a spring
-    if c == n and f[j + n] ~= "#" then p[#p + 1] = j end
+  local l, r = i, i
+  while l <= #f - n + 1 do
+    if l > 1 and f[l - 1] == "#" then break end
+    while r - l < n and f[r] ~= "." do
+      r = r + 1
+    end
+    if r - l == n and f[r] ~= "#" then
+      p[#p + 1] = l
+    end
+    l = l + 1
+    r = math.max(r, l)
   end
   return p
 end
 
--- solve one instance
+-- iterative dp
 local function solve(f, r)
-  local util = require("util")
-  local tset = util.tset
-
-  -- table for memoization
-  local dp = {}
-  local function sol(i, j)
-    -- if a solution is already available then use it
-    if dp[i] and dp[i][j] then
-      return dp[i][j]
+  local dp = {[1] = 1}
+  for i = 1, #r do
+    local newdp = {}
+    for j, a in pairs(dp) do
+      local ps = places(f, j, r[i])
+      for _, k in pairs(ps) do
+        newdp[k + r[i] + 1] = (newdp[k + r[i] + 1] or 0) + a
+      end
     end
-
-    if j > #r then
-      -- check if there is spring that is not part of group
-      return (i <= #f and f:sub(i, #f):match('#')) and 0 or 1
-    end
-
-    local res = 0
-    local ps = places(f, i, r[j])
-    for _, p in pairs(ps) do
-      res = res + sol(p + r[j] + 1, j + 1)
-    end
-    tset(dp, {i, j}, res)
-    return res
+    dp = newdp
   end
-  sol(1, 1)
-  return dp[1][1]
+
+  local res = 0
+  local l = f:find("[^#]*$")
+  for i, a in pairs(dp) do
+    if i >= l then
+      res = res + a
+    end
+  end
+  return res
 end
 
-local total = 0
-local res = {}
-local _solve = lanes.gen("*", solve)  -- lua parallelization
+local res = 0
 for i = 1, #fs do
-  res[i] = _solve(fs[i], rs[i])
+  res = res + solve(fs[i], rs[i])
 end
-for i = 1, #fs do
-  total = total + res[i][1]  -- waits for results of i-th thread
-end
-print(total)  -- 1493340882140
+print(res)  -- 1493340882140
 
