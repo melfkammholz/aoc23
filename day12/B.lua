@@ -23,7 +23,7 @@ for r in io.lines() do
   end
 end
 
--- all positions where n springs could be placed starting at i
+-- all end positions where n springs could be placed starting at i
 local function places(f, i, n)
   local p = {}
   local l, r = i, i
@@ -33,7 +33,7 @@ local function places(f, i, n)
       r = r + 1
     end
     if r - l == n and f[r] ~= "#" then
-      p[#p + 1] = l
+      p[#p + 1] = r + 1
     end
     l = l + 1
     r = math.max(r, l)
@@ -49,7 +49,7 @@ local function solve(f, r)
     for j, a in pairs(dp) do
       local ps = places(f, j, r[i])
       for _, k in pairs(ps) do
-        newdp[k + r[i] + 1] = (newdp[k + r[i] + 1] or 0) + a
+        newdp[k] = (newdp[k] or 0) + a
       end
     end
     dp = newdp
