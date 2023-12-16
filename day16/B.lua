@@ -32,12 +32,10 @@ local function solve(sy, sx, sd)
   local tget = util.tget
 
   local q = {{sy, sx, sd}}
-  local qs = 1
   local seen = {}
   tset(seen, {sy, sx, sd}, true)
-  while qs <= #q do
-    local y, x, d = unp(q[qs])
-    qs = qs + 1
+  for _, qi in ipairs(q) do
+    local y, x, d = unp(qi)
     for i = 1, #refl[g[y][x]][d] do
       local dy, dx = unp(refl[g[y][x]][d][i])
       local next = {y + dy, x + dx, getdir[dy][dx]}
