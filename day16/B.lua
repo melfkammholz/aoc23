@@ -68,30 +68,30 @@ end
 
 local _solve = lanes.gen("*", solve)
 
-local mres = 0
+local res = 0
 for sx = 1, #g[1] do
   local a1 = _solve(1, sx, 1)
   local a2 = _solve(1, sx, 2)
   local a3 = _solve(1, sx, 3)
   local a4 = _solve(1, sx, 4)
-  mres = math.max(mres, a1[1], a2[1], a3[1], a4[1])
+  res = math.max(res, a1[1], a2[1], a3[1], a4[1])
   a1 = _solve(#g, sx, 1)
   a2 = _solve(#g, sx, 2)
   a3 = _solve(#g, sx, 3)
   a4 = _solve(#g, sx, 4)
-  mres = math.max(mres, a1[1], a2[1], a3[1], a4[1])
+  res = math.max(res, a1[1], a2[1], a3[1], a4[1])
 end
 for sy = 1, #g do
   local a1 = _solve(sy, 1, 1)
   local a2 = _solve(sy, 1, 2)
   local a3 = _solve(sy, 1, 3)
   local a4 = _solve(sy, 1, 4)
-  mres = math.max(mres, a1[1], a2[1], a3[1], a4[1])
+  res = math.max(res, a1[1], a2[1], a3[1], a4[1])
   a1 = _solve(sy, #g[1], 1)
   a2 = _solve(sy, #g[1], 2)
   a3 = _solve(sy, #g[1], 3)
   a4 = _solve(sy, #g[1], 4)
-  mres = math.max(mres, a1[1], a2[1], a3[1], a4[1])
+  res = math.max(res, a1[1], a2[1], a3[1], a4[1])
 end
-print(mres)  -- 8244
+print(res)  -- 8244
 
