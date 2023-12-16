@@ -1,6 +1,6 @@
+local lanes = require("lanes").configure()
 local util = require("util")
 local tset = util.tset
-local tget = util.tget
 
 local g = {}
 for r in io.lines() do
@@ -22,20 +22,24 @@ local refl = {
 }
 
 local function inb(y, x)
-  if y < 1 or y > #g then return false end
-  return 1 <= x and x <= #g[y]
+  return 1 <= y and y <= #g and 1 <= x and x <= #g[y]
 end
 
 local function solve(sy, sx, sd)
+  local unp = table.unpack
+  local util = require("util")
+  local tset = util.tset
+  local tget = util.tget
+
   local q = {{sy, sx, sd}}
   local qs = 1
   local seen = {}
   tset(seen, {sy, sx, sd}, true)
   while qs <= #q do
-    local y, x, d = table.unpack(q[qs])
+    local y, x, d = unp(q[qs])
     qs = qs + 1
     for i = 1, #refl[g[y][x]][d] do
-      local dy, dx = table.unpack(refl[g[y][x]][d][i])
+      local dy, dx = unp(refl[g[y][x]][d][i])
       local next = {y + dy, x + dx, getdir[dy][dx]}
       if not inb(next[1], next[2]) then
         goto continue
@@ -54,30 +58,40 @@ local function solve(sy, sx, sd)
       local c = 0
       for i = 1, #dirs do
         local f = tget(seen, {y, x, i}, false)
-        if f then
-          c = c + 1
-        end
+        c = c + (f and 1 or 0)
       end
-      if c > 0 then
-        res = res + 1
-      end
+      res = res + (c > 0 and 1 or 0)
     end
   end
   return res
 end
 
+local _solve = lanes.gen("*", solve)
+
 local mres = 0
 for sx = 1, #g[1] do
-  for sd = 1, #dirs do
-    mres = math.max(mres, solve(1, sx, sd))
-    mres = math.max(mres, solve(#g, sx, sd))
-  end
+  local a1 = _solve(1, sx, 1)
+  local a2 = _solve(1, sx, 2)
+  local a3 = _solve(1, sx, 3)
+  local a4 = _solve(1, sx, 4)
+  mres = math.max(mres, a1[1], a2[1], a3[1], a4[1])
+  a1 = _solve(#g, sx, 1)
+  a2 = _solve(#g, sx, 2)
+  a3 = _solve(#g, sx, 3)
+  a4 = _solve(#g, sx, 4)
+  mres = math.max(mres, a1[1], a2[1], a3[1], a4[1])
 end
 for sy = 1, #g do
-  for sd = 1, #dirs do
-    mres = math.max(mres, solve(sy, 1, sd))
-    mres = math.max(mres, solve(sy, #g[1], sd))
-  end
+  local a1 = _solve(sy, 1, 1)
+  local a2 = _solve(sy, 1, 2)
+  local a3 = _solve(sy, 1, 3)
+  local a4 = _solve(sy, 1, 4)
+  mres = math.max(mres, a1[1], a2[1], a3[1], a4[1])
+  a1 = _solve(sy, #g[1], 1)
+  a2 = _solve(sy, #g[1], 2)
+  a3 = _solve(sy, #g[1], 3)
+  a4 = _solve(sy, #g[1], 4)
+  mres = math.max(mres, a1[1], a2[1], a3[1], a4[1])
 end
 print(mres)  -- 8244
 
