@@ -66,7 +66,7 @@ function M.lcm(a, b)
   return a // M.gcd(a, b) * b
 end
 
-heap = {}
+local heap = {}
 
 function heap:new(cmp)
   local h = {cmp = cmp, size = 0}
