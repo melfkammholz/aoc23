@@ -29,4 +29,4 @@ for i = 1, #ps - 1 do
   a = a + ps[i][1] * ps[i + 1][2] - ps[i][2] * ps[i + 1][1]
   b = b + math.abs(ps[i][1] - ps[i + 1][1]) + math.abs(ps[i][2] - ps[i + 1][2])
 end
-print(a // 2 + b // 2 - 1 + 2)  -- 106941819907437
+print(a // 2 + b // 2 + 1)  -- 106941819907437
