@@ -20,12 +20,13 @@ for i = 1, #ds do
   ps[#ps + 1] = {x, y}
 end
 
+-- https://en.wikipedia.org/wiki/Shoelace_formula
+-- https://en.wikipedia.org/wiki/Pick%27s_theorem
 local a = 0
 local b = 0
 for i = 1, #ps - 1 do
-  -- https://en.wikipedia.org/wiki/Shoelace_formula
-  -- https://en.wikipedia.org/wiki/Pick%27s_theorem
   a = a + ps[i][1] * ps[i + 1][2] - ps[i][2] * ps[i + 1][1]
   b = b + math.abs(ps[i][1] - ps[i + 1][1]) + math.abs(ps[i][2] - ps[i + 1][2])
 end
 print(a // 2 + b // 2 + 1)  -- 44436
+
