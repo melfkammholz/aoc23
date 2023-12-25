@@ -1,4 +1,3 @@
-local inspect = require("inspect")
 local unp = table.unpack
 
 local DSU = {}
