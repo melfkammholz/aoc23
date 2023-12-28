@@ -74,6 +74,8 @@ repeat
     local a, b = unp(e)
     if d.groups > 2 then
       d:merge(a, b)
+    else
+      break
     end
   end
 until d.groups > 2

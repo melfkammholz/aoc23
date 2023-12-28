@@ -113,4 +113,43 @@ end
 
 M.heap = heap
 
+
+function M.uniq(t)
+  local i = 0
+  for j = 1, #t + 1 do
+    if t[i] ~= t[j] then
+      t[i + 1] = t[j]
+      i = i + 1
+    end
+  end
+  for j = i, #t do
+    t[j] = nil
+  end
+end
+
+function M.rem(t, x)
+  local i = 1
+  for j = 1, #t do
+    if t[j] ~= x then
+      t[i] = t[j]
+      i = i + 1
+    end
+  end
+  for j = i, #t do
+    t[j] = nil
+  end
+end
+
+function M.deepcopy(a)
+  if type(a) == "table" then
+    local b = {}
+    for k, v in pairs(a) do
+      b[k] = M.deepcopy(v)
+    end
+    return b
+  else
+    return a
+  end
+end
+
 return M

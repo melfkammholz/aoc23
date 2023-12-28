@@ -38,8 +38,8 @@ end
 
 local res = 0
 for i = 1, #hs do
-  for j = 1, #hs do
-    if i < j and int(i, j) then res = res + 1 end
+  for j = i + 1, #hs do
+    if int(i, j) then res = res + 1 end
   end
 end
 print(res)
